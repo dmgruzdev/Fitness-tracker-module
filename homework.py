@@ -92,12 +92,12 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         # рост в метрах:
-        HEIGHT_IN_M = self.height / self.CM_IN_M
+        height_in_m = self.height / self.CM_IN_M
         # ср. скорость в м/с:
-        MEAN_SPEED_IN_MSEC = self.get_mean_speed() * self.KMH_IN_MSEC
+        mean_speed_in_msec = self.get_mean_speed() * self.KMH_IN_MSEC
         return (
             (self.CALORIES_WEIGHT_MULTIPLIER * self.weight
-             + (MEAN_SPEED_IN_MSEC ** 2 / HEIGHT_IN_M)
+             + (mean_speed_in_msec ** 2 / height_in_m)
              * self.CALORIES_SPEED_HEIGHT_MULTIPLIER * self.weight)
             * self.duration * self.MIN_IN_H
         )
@@ -138,9 +138,8 @@ def read_package(workout_type: str, data: List[float]) -> Training:
                                                 'WLK': SportsWalking
                                                 }
     if workout_type not in types_workout:
-        raise TypeError("Несуществующий тип тренировки")
-    else:
-        return types_workout[workout_type](*data)
+        raise ValueError('Несуществующее значение тренировки')
+    return types_workout[workout_type](*data)
 
 
 def main(training: Training) -> None:
