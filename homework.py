@@ -68,8 +68,8 @@ class Running(Training):
         return (
             (self.CF_CALORIES_RUN_1 * self.get_mean_speed()
              + self.CF_CALORIES_RUN_2)
-             * self.weight / self.M_IN_KM
-             * self.duration * self.MIN_IN_H
+            * self.weight / self.M_IN_KM
+            * self.duration * self.MIN_IN_H
         )
 
 
@@ -97,8 +97,8 @@ class SportsWalking(Training):
         MEAN_SPEED_IN_MSEC = self.get_mean_speed() * self.KMH_IN_MSEC
         return (
             (self.CALORIES_WEIGHT_MULTIPLIER * self.weight
-            + (MEAN_SPEED_IN_MSEC ** 2 / HEIGHT_IN_M)
-            * self.CALORIES_SPEED_HEIGHT_MULTIPLIER * self.weight)
+             + (MEAN_SPEED_IN_MSEC ** 2 / HEIGHT_IN_M)
+             * self.CALORIES_SPEED_HEIGHT_MULTIPLIER * self.weight)
             * self.duration * self.MIN_IN_H
         )
 
